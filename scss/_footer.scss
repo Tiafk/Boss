@@ -1,0 +1,25 @@
+.footer {
+    width: 100%;
+    padding: 21px 0 22px;
+    box-sizing: border-box;
+    border-top: 1px solid #FFFFFF1A;
+    
+    .wrapper-footer {
+        display: flex;
+        align-items: center;
+        justify-self: center;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 1312px;
+        padding: 0 16px;
+        box-sizing: border-box;
+    }
+    p {
+        font-family: 'Inter-Regular';
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 130%;
+        letter-spacing: 0;
+        color: var(--text);
+    }
+}
