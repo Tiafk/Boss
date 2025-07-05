@@ -13,6 +13,16 @@ var swiper = new Swiper(".mySwiper", {
   },
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+  const swiper = new Swiper('.mySwiper2', {
+    loop: true,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  });
+});
+
 document.addEventListener("DOMContentLoaded", function () {
   const phoneInput = document.getElementById("phone");
 
@@ -52,6 +62,7 @@ document.addEventListener('click', function (e) {
     popup.classList.add('visible');
     overlay.classList.add('visible');
     body.classList.add('lock');
+    popup.scrollTop = 0;
   } else if( e.target === overlay || e.target === closePopup) {
     popup.classList.remove('visible');
     overlay.classList.remove('visible');
@@ -68,12 +79,25 @@ document.addEventListener('click', function (e) {
   }
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-  const swiper = new Swiper('.mySwiper2', {
-    loop: true,
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-  });
+
+let startY = 0;
+let endY = 0;
+
+popup.addEventListener('touchstart', (e) => {
+  startY = e.touches[0].clientY;
+});
+
+popup.addEventListener('touchmove', (e) => {
+  endY = e.touches[0].clientY;
+});
+
+popup.addEventListener('touchend', () => {
+  const swipeDistance = endY - startY;
+  const swipeThreshold = 300; // минимальная длина свайпа
+
+  if (swipeDistance > swipeThreshold) {
+    popup.classList.remove('visible');
+    overlay.classList.remove('visible');
+    body.classList.remove('lock');
+  }
 });
